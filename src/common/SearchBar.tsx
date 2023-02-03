@@ -20,7 +20,7 @@ export const SearchBar = ({ className, placeholder, setSearchResult, errorMessag
         // result in 404 as the user has not finished typing. 
         timer = setTimeout(() => {
             setSearchResult(input);
-        }, 1000);
+        }, 500);
 
         return () => {
             clearTimeout(timer);

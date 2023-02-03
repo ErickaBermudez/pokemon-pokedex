@@ -16,7 +16,7 @@ export const getPokemon = async (pokemonName: string) => {
         }
         else return Promise.reject(notFoundMessage);
     } catch (err: any) {
-        if(err.response.status == 404){
+        if(err.response.status === 404){
             return Promise.reject(notFoundMessage)
         }
         return Promise.reject("Oops! There has been an error, try later!")
