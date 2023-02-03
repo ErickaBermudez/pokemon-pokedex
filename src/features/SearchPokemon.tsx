@@ -5,7 +5,7 @@ import { getPokemon } from '../services/api';
 import { useDispatch } from 'react-redux';
 import { setLoader } from '../store';
 
-export const SearchPokemon = () => {
+export const SearchPokemon = ({setPokemon, setIsError}: any) => {
         const [pokemonName, setPokemonName] = useState("");
         const [errorMessage, setErrorMessage] = useState("");
         const [isLoading, setIsLoading] = useState(false);
@@ -13,9 +13,17 @@ export const SearchPokemon = () => {
 
         const dispatch = useDispatch();
 
+        useEffect(() => {
+                setIsError(errorMessage? true : false)
+        }, [errorMessage]);
+
+        useEffect(()=> {
+                setPokemon(pokemonData);
+        }, [pokemonData]);
+
         useEffect(()=> {
                 dispatch(setLoader(isLoading));
-        }, [dispatch, isLoading])
+        }, [dispatch, isLoading]);
 
         const getPokemonData = async (pokemonName: string) => {
                 try {
