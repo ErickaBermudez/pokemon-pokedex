@@ -1,13 +1,12 @@
 import './App.css';
 import React from 'react';
+import { MainLayout } from './layouts/MainLayout';
 
 function App() {
   return (
-    <div className="App">
-      <header className="bg-red-400">
-        Pokedex!
-      </header>
-    </div>
+    <>
+      <MainLayout/>
+    </>
   );
 }
 
