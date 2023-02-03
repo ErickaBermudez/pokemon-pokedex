@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 type SearchBarProps = {
     className: string,
@@ -14,10 +14,18 @@ export const SearchBar = ({ className, placeholder, setSearchResult, errorMessag
     const [searchMargin, setSearchMargin] = useState('m-0');
     const [input, setInput] = useState('');
 
-    const inputChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
-        setInput(event.target.value);
-        setSearchResult(event.target.value);
-    };
+    useEffect(() => {
+        let timer: NodeJS.Timeout;
+        // the timer will prevent to make many requests that would 
+        // result in 404 as the user has not finished typing. 
+        timer = setTimeout(() => {
+            setSearchResult(input);
+        }, 1000);
+
+        return () => {
+            clearTimeout(timer);
+        }; 
+    }, [input])
 
     const clearInput = () => {
         setInput("");
@@ -39,7 +47,7 @@ export const SearchBar = ({ className, placeholder, setSearchResult, errorMessag
                 <form>
                     <input id="input"
                         className={`${searchMargin} ${searchBarStyles} bg-transparent p-3`} type="search" name="search" placeholder={placeholder}
-                        onChange={inputChange}
+                        onChange={(e) => {setInput(e.target.value)}}
                         value={input}
                         onFocus={() => {
                             if (errorMessage) return
@@ -47,7 +55,7 @@ export const SearchBar = ({ className, placeholder, setSearchResult, errorMessag
                             setSearchMargin('ml-8')
                         }}
                         onBlur={(e) => {
-                            if (!e.target.value) {
+                            if (!e.target.value || errorMessage) {
                                 setShowIcon(true);
                                 setSearchMargin('m-0');
                             }
