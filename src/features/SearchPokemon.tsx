@@ -42,12 +42,12 @@ export const SearchPokemon = ({setPokemon, setIsError}: any) => {
                 getPokemonData(pokemonName)
         }, [pokemonName])
 
-        return <>
+        return <div className='flex justify-center'>
 
-                <SearchBar searchBarStyles="font-kreon text-5xl" placeholder="Search Pokemon"
+                <SearchBar searchBarStyles="font-kreon text-5xl" placeholder="&#xF002; Search Pokemon"
                         errorMessage={errorMessage}
                         className=""
                         setSearchResult={(result: React.SetStateAction<string>) => { setPokemonName(result) }} />
 
-        </>
+        </div>
 }

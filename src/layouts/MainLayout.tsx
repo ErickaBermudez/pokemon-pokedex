@@ -40,21 +40,23 @@ export const MainLayout = () => {
                     <h1 className='font-kulim-park text-2xl'>Pokedex</h1>
                 </div>
 
-
+                {/** page content */}
+                <div className='flex flex-col align-middle justify-start items-center'>
                 {/** search bar */}
-                <div className='flex items-center align-middle justify-center'>
+                <div className='flex items-center align-middle justify-center w-1/3'>
                     <SearchPokemon setPokemon={setPokemon} setIsError={setIsError} />
                 </div>
 
                 {/** pokemon card */}
                 {!isError &&
-                    <div className='flex items-center align-middle justify-center'>
+                    <div className='flex items-center align-middle justify-center w-1/3'>
                         {pokemon.id
                             ? <PokemonCard pokemon={pokemon}></PokemonCard>
                             : <p>No pokemon yet, please submit a pokemon!</p>
                         }
                     </div>
                 }
+                </div>
             </div>
         </LoadingPage>
     )

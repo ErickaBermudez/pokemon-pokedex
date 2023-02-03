@@ -1,4 +1,7 @@
-export const pokemonColors = {
+interface colorsType {
+	[key: string]: string;
+}
+const colors = {
 	normal: '#A8A77A',
 	fire: '#EE8130',
 	water: '#6390F0',
@@ -18,3 +21,5 @@ export const pokemonColors = {
 	steel: '#B7B7CE',
 	fairy: '#D685AD',
 };
+
+export const pokemonColors: colorsType =  colors;
