@@ -1,9 +1,10 @@
 // imports
 import React from 'react';
-import { pokemonColors } from '../common/pokemonColors';
-// components
-const pokeball = require('../assets/images/pokeball.png');
+import { SearchPokemon } from '../features/SearchPokemon'
+import { pokemonColors } from '../utils/pokemonColors';
+
 // variables
+const pokeball = require('../assets/images/pokeball.png');
 const backgroundColor = 'rgb(248 250 252)';
 var selectedPokemon: string | null;
 
@@ -12,6 +13,10 @@ export const MainLayout = () => <div className={`w-full h-screen p-10`} style={{
         <img src={pokeball} alt="Pokeball" className='w-10 h-10 mr-3' />
         <h1 className='font-kulim-park text-2xl'>Pokedex</h1>
     </div>
-    <p>
-    </p>
+
+
+    {/** search bar */}
+    <div className='flex items-center align-middle justify-center'>
+        <SearchPokemon/>
+    </div>
 </div>
