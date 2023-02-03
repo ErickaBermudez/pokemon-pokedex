@@ -34,7 +34,7 @@ export const MainLayout = () => {
 
     return (
         <LoadingPage active={isLoading}>
-            <div className={`w-full h-screen p-10`} style={{ backgroundColor: pokemon ? '' : backgroundColor }}>
+            <div className={`w-full h-screen p-10`} style={{ backgroundColor: pokemon?.types ? pokemonColors[pokemon.types[0].type.name] : backgroundColor }}>
                 <div className='flex items-center'>
                     <img src={pokeball} alt="Pokeball" className='w-10 h-10 mr-3' />
                     <h1 className='font-kulim-park text-2xl'>Pokedex</h1>
@@ -43,7 +43,7 @@ export const MainLayout = () => {
                 {/** page content */}
                 <div className='flex flex-col align-middle justify-start items-center'>
                 {/** search bar */}
-                <div className='flex items-center align-middle justify-center w-1/3'>
+                <div className='flex items-center align-middle justify-center w-1/3 z-50'>
                     <SearchPokemon setPokemon={setPokemon} setIsError={setIsError} />
                 </div>
 
@@ -52,7 +52,7 @@ export const MainLayout = () => {
                     <div className='flex items-center align-middle justify-center w-1/3'>
                         {pokemon.id
                             ? <PokemonCard pokemon={pokemon}></PokemonCard>
-                            : <p>No pokemon yet, please submit a pokemon!</p>
+                            : <p className='mt-2 text-lg'>No pokemon yet, please submit a pokemon!</p>
                         }
                     </div>
                 }

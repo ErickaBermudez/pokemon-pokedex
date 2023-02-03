@@ -9,9 +9,6 @@ type SearchBarProps = {
 }
 
 export const SearchBar = ({ className, placeholder, setSearchResult, errorMessage, searchBarStyles }: SearchBarProps) => {
-    const [showIcon, setShowIcon] = useState(true);
-    {/** this margin makes sure the icon doesn't move the search bar */ }
-    const [searchMargin, setSearchMargin] = useState('m-0');
     const [input, setInput] = useState('');
 
     useEffect(() => {
@@ -39,20 +36,9 @@ export const SearchBar = ({ className, placeholder, setSearchResult, errorMessag
             <div className='flex items-center'>
                 <form>
                     <input id="input"
-                        className={`${searchMargin} ${searchBarStyles} bg-transparent p-3 fontAwesome`} type="search" name="search" placeholder={placeholder}
+                        className={`${searchBarStyles} bg-transparent p-3 pl-0 fontAwesome`} type="search" name="search" placeholder={placeholder}
                         onChange={(e) => {setInput(e.target.value)}}
                         value={input}
-                        onFocus={() => {
-                            if (errorMessage) return
-                            setShowIcon(false);
-                            //setSearchMargin('ml-8')
-                        }}
-                        onBlur={(e) => {
-                            if (!e.target.value || errorMessage) {
-                                setShowIcon(true);
-                                //setSearchMargin('m-0');
-                            }
-                        }}
                     ></input>
                 </form>
             </div>
