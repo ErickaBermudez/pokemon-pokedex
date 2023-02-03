@@ -20,7 +20,7 @@ export const PokemonCard = ({ pokemon }: any) => {
                 })
             }
             <div className="flex justify-center items-center mt-24">
-                <div className="bg-white w-full h-full" style={{borderRadius: '60px'}}>
+                <div className="bg-white w-full h-screen" style={{borderRadius: '60px'}}>
                 <div className="flex justify-center">
                     <img src={pokemon?.sprites?.front_default} className="w-96 h-96 -mt-36 -mb-5" alt="Pokemon" />
 

@@ -43,13 +43,13 @@ export const MainLayout = () => {
                 {/** page content */}
                 <div className='flex flex-col align-middle justify-start items-center'>
                 {/** search bar */}
-                <div className='flex items-center align-middle justify-center w-1/3 z-50'>
+                <div className='flex items-center align-middle justify-center md:w-1/3 z-50 w-full'>
                     <SearchPokemon setPokemon={setPokemon} setIsError={setIsError} />
                 </div>
 
                 {/** pokemon card */}
                 {!isError &&
-                    <div className='flex items-center align-middle justify-center w-1/3'>
+                    <div className='flex items-center align-middle justify-center md:w-1/3 w-full'>
                         {pokemon.id
                             ? <PokemonCard pokemon={pokemon}></PokemonCard>
                             : <p className='mt-2 text-lg'>No pokemon yet, please submit a pokemon!</p>
