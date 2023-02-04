@@ -1,28 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 type SearchBarProps = {
     className: string,
     placeholder: string,
     setSearchResult: any,
     errorMessage: string,
-    searchBarStyles: string
+    searchBarStyles: string,
+    sideLegend: string
 }
 
-export const SearchBar = ({ className, placeholder, setSearchResult, errorMessage, searchBarStyles }: SearchBarProps) => {
+export const SearchBar = ({ className, placeholder, setSearchResult, errorMessage, searchBarStyles, sideLegend }: SearchBarProps) => {
     const [input, setInput] = useState('');
+    const setSearchResultCallback = useCallback(setSearchResult, [setSearchResult]);
+
 
     useEffect(() => {
         let timer: NodeJS.Timeout;
         // the timer will prevent to make many requests that would 
         // result in 404 as the user has not finished typing. 
         timer = setTimeout(() => {
-            setSearchResult(input);
+            setSearchResultCallback(input);
         }, 500);
 
         return () => {
             clearTimeout(timer);
         }; 
-    }, [input])
+    }, [input, setSearchResultCallback])
 
     const clearInput = () => {
         setInput("");
@@ -32,7 +35,7 @@ export const SearchBar = ({ className, placeholder, setSearchResult, errorMessag
     return <>
         <div className={`${className} w-full`}>
 
-            {/** search bar an icon */}
+            {/** search bar */}
             <div className='flex items-center'>
                 <form>
                     <input id="input"
@@ -41,8 +44,11 @@ export const SearchBar = ({ className, placeholder, setSearchResult, errorMessag
                         value={input}
                     ></input>
                 </form>
+                { sideLegend &&
+                    <span className='font-kulim-park text-2xl font-bold -ml-28'>{sideLegend}</span>
+                }
             </div>
-            {/** end search bar and icon */}
+            {/** end search bar */}
 
             {/** error message */}
             {errorMessage && <p className='bg-red-200 text-sm p-2 border-red-300 border-2'>

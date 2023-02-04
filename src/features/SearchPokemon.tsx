@@ -1,27 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { SearchBar } from '../common/SearchBar'
 import { getPokemon } from '../services/api';
 import { useDispatch } from 'react-redux';
 import { setLoader } from '../store';
 
-export const SearchPokemon = ({setPokemon, setIsError}: any) => {
+export const SearchPokemon = ({ setPokemon, setIsError }: any) => {
         const [pokemonName, setPokemonName] = useState("");
         const [errorMessage, setErrorMessage] = useState("");
         const [isLoading, setIsLoading] = useState(false);
-        const [pokemonData, setPokemonData] = useState({});
+
+        type Pokemon = {
+                [id: string]: any;
+            }
+        
+            const tempPokemon: Pokemon = {
+                id: null
+            }
+
+        const [pokemonData, setPokemonData] = useState(tempPokemon);
 
         const dispatch = useDispatch();
 
+        const setIsErrorCallback = useCallback(setIsError, [setIsError]);
+        const setPokemonCallback = useCallback(setPokemon, [setPokemon]);
+
         useEffect(() => {
-                setIsError(errorMessage? true : false)
-        }, [errorMessage]);
+                setIsErrorCallback(errorMessage ? true : false);
+        }, [errorMessage, setIsErrorCallback]);
 
-        useEffect(()=> {
-                setPokemon(pokemonData);
-        }, [pokemonData]);
+        useEffect(() => {
+                setPokemonCallback(pokemonData);
+        }, [pokemonData, setPokemonCallback]);
 
-        useEffect(()=> {
+        useEffect(() => {
                 dispatch(setLoader(isLoading));
         }, [dispatch, isLoading]);
 
@@ -44,9 +56,10 @@ export const SearchPokemon = ({setPokemon, setIsError}: any) => {
 
         return <div className='flex justify-center w-full'>
 
-                <SearchBar searchBarStyles="font-kreon text-6xl" placeholder="&#xF002; Search Pokemon"
+                <SearchBar searchBarStyles="font-kreon text-4xl lg:text-6xl" placeholder="&#xF002; Search Pokemon"
                         errorMessage={errorMessage}
                         className=""
+                        sideLegend={`#${pokemonData?.id}`}
                         setSearchResult={(result: React.SetStateAction<string>) => { setPokemonName(result) }} />
 
         </div>
