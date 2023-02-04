@@ -8,6 +8,3 @@
 
 .fontAwesome{ font-family: 'Kreon', FontAwesome, sans-serif; }
 
-body {
-    @apply xl:overflow-y-hidden
-}
