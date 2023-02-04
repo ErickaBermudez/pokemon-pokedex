@@ -108,7 +108,7 @@ export const PokemonCard = ({ pokemon }: any) => {
 
                         {/** moves */
                             active === tabs.MOVES &&
-                            <div className="font-kulim-park text-center text-sm max-h-80 overflow-y-auto">
+                            <div className="font-kulim-park text-center text-sm max-h-64 overflow-y-auto">
                                 <div className="grid grid-cols-1 lg:grid-cols-3 p-10">
                                     {
                                         pokemon?.moves.map((move: any) => {

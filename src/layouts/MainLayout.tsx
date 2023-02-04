@@ -34,7 +34,7 @@ export const MainLayout = () => {
 
     return (
         <LoadingPage active={isLoading}>
-            <div className={`w-full h-screen p-10`} style={{ backgroundColor: pokemon?.types ? pokemonColors[pokemon.types[0].type.name] : backgroundColor }}>
+            <div className={`w-full p-10`} style={{ backgroundColor: pokemon?.types ? pokemonColors[pokemon.types[0].type.name] : backgroundColor }}>
                 <div className='flex items-center'>
                     <img src={pokeball} alt="Pokeball" className='w-10 h-10 mr-3' />
                     <h1 className='font-kulim-park text-2xl'>Pokedex</h1>
