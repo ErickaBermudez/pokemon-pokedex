@@ -59,7 +59,7 @@ export const SearchPokemon = ({ setPokemon, setIsError }: any) => {
                 <SearchBar searchBarStyles="font-kreon text-4xl lg:text-6xl" placeholder="&#xF002; Search Pokemon"
                         errorMessage={errorMessage}
                         className=""
-                        sideLegend={`#${pokemonData?.id}`}
+                        sideLegend={pokemonData?.id ? `#${pokemonData?.id}` : ''}
                         setSearchResult={(result: React.SetStateAction<string>) => { setPokemonName(result) }} />
 
         </div>
