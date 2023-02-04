@@ -39,13 +39,13 @@ export const PokemonCard = ({ pokemon }: any) => {
                     })
                 }
                 <div className="flex justify-center items-center mt-24">
-                    <div className="bg-white w-full h-screen" style={{ borderRadius: '60px' }}>
+                    <div className="bg-white w-full h-full xl:h-screen" style={{ borderRadius: '60px' }}>
                         <div className="flex justify-center">
                             <img src={pokemon?.sprites?.front_default} className="w-96 h-96 -mt-36 -mb-5" alt="Pokemon" />
                         </div>
 
                         {/** tabs to show the stats */}
-                        <div className="text-lg font-semibold text-centerw-full">
+                        <div className="text-lg font-semibold text-center w-full">
                             <ul className="flex justify-evenly">
                                 <li className="mr-2">
                                     <button onClick={() => setActive(tabs.STATS)}

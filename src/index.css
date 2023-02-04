@@ -9,5 +9,5 @@
 .fontAwesome{ font-family: 'Kreon', FontAwesome, sans-serif; }
 
 body {
-    overflow-y: hidden;
+    @apply xl:overflow-y-hidden
 }
